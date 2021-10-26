@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./screens\";","map":{"version":3,"sources":["/Users/cosmos/Courses/Dcit 202/EcommerceApp/navigations/index.ts"],"names":[],"mappings":"AAAA","sourcesContent":["export * from \"./screens\";\n"]},"metadata":{},"sourceType":"module"}
