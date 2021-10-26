@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   },
   title: {
     marginHorizontal: Sizes.MAIN_PADDING,
-    marginTop: 30,
-    marginBottom: 40,
+    marginTop: "7.7%",
+    marginBottom: "10%",
     color: Colors.WHITE,
     fontSize: getScreenPercent(16.7),
     fontFamily: FontType.RALEWAY_EXTRA_BOLD,
