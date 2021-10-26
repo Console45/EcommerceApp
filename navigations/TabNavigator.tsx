@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Screens, TabNavigatorParamList } from "./screens";
 import { Cart, Home } from "../screens";
-import { Favourites } from "../screens/Favourites";
+import { Favourites } from "../screens/Favorites";
 
 interface TabNavigatorProps {}
 const Tab = createBottomTabNavigator<TabNavigatorParamList>();
