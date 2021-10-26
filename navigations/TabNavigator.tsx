@@ -11,8 +11,16 @@ export const TabNavigator: FC<TabNavigatorProps> = ({}): ReactElement => {
   return (
     <Tab.Navigator initialRouteName={Screens.HOME}>
       <Tab.Screen name={Screens.HOME} component={Home} />
-      <Tab.Screen name={Screens.FAVORITES} component={Favourites} />
-      <Tab.Screen name={Screens.CART} component={Cart} />
+      <Tab.Screen
+        name={Screens.FAVORITES}
+        component={Favourites}
+        options={{ tabBarStyle: { display: "none" } }}
+      />
+      <Tab.Screen
+        name={Screens.CART}
+        component={Cart}
+        options={{ tabBarStyle: { display: "none" } }}
+      />
     </Tab.Navigator>
   );
 };
