@@ -1,13 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { FC, ReactElement } from "react";
-import {
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  Image,
-  View,
-} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, StatusBar, Text, Image, View } from "react-native";
 import { Button } from "../components";
 import { NativeStackParamList, Screens } from "../navigations/screens";
 import { Colors, FontType, Metrics, Sizes } from "../theme";
