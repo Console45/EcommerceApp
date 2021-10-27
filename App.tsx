@@ -5,6 +5,7 @@ import AppLoading from "expo-app-loading";
 import { NativeStackParamList, Screens } from "./navigations/screens";
 import { Login, Onboarding } from "./screens";
 import { TabNavigator } from "./navigations/TabNavigator";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
   Raleway_800ExtraBold,
@@ -25,15 +26,17 @@ export default function App() {
     return <AppLoading />;
   } else
     return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName={Screens.ONBOARDING}
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name={Screens.ONBOARDING} component={Onboarding} />
-          <Stack.Screen name={Screens.LOGIN} component={Login} />
-          <Stack.Screen name={Screens.SHOP} component={TabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName={Screens.ONBOARDING}
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name={Screens.ONBOARDING} component={Onboarding} />
+            <Stack.Screen name={Screens.LOGIN} component={Login} />
+            <Stack.Screen name={Screens.SHOP} component={TabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     );
 }
