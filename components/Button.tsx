@@ -4,24 +4,35 @@ import {
   StyleSheet,
   TouchableOpacity,
   ViewStyle,
+  Text,
+  TextStyle,
 } from "react-native";
-import { Colors } from "../theme";
+import { Colors, FontType } from "../theme";
+import { getScreenPercent } from "../utils";
 
 interface ButtonProps {
   children?: ReactElement;
   style?: ViewStyle;
   onPress?: (e: GestureResponderEvent) => void;
+  title?: string;
+  textStyle?: TextStyle;
 }
 
 export const Button: FC<ButtonProps> = ({
   children,
   style,
+  title,
   onPress,
+  textStyle,
 }): ReactElement => {
   const { button } = styles;
   return (
     <TouchableOpacity onPress={onPress} style={{ ...button, ...style }}>
-      {children}
+      {title ? (
+        <Text style={{ ...styles.buttonText, ...textStyle }}>{title}</Text>
+      ) : (
+        children
+      )}
     </TouchableOpacity>
   );
 };
@@ -39,5 +50,10 @@ const styles = StyleSheet.create({
     elevation: 1,
     shadowOpacity: 0.2,
     shadowRadius: 30,
+  },
+  buttonText: {
+    color: Colors.WHITE,
+    fontFamily: FontType.RALEWAY_BOLD,
+    fontSize: getScreenPercent(5.1),
   },
 });
