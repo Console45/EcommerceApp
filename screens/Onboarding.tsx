@@ -25,10 +25,10 @@ export const Onboarding: FC<OnboardingProps> = ({
       </View>
       <Button
         style={styles.button}
+        title={"Get started"}
         onPress={() => navigation.navigate(Screens.LOGIN)}
-      >
-        <Text style={styles.buttonText}>Get started</Text>
-      </Button>
+        textStyle={{ color: Colors.PRIMARY }}
+      />
     </SafeAreaView>
   );
 };
@@ -57,9 +57,4 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   button: { backgroundColor: Colors.WHITE, width: "81%", alignSelf: "center" },
-  buttonText: {
-    color: Colors.PRIMARY,
-    fontFamily: FontType.RALEWAY_BOLD,
-    fontSize: getScreenPercent(5.5),
-  },
 });
