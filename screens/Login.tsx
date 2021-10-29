@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { FC, ReactElement, useState } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   View,
   StyleSheet,
@@ -32,7 +33,12 @@ export const Login: FC<LoginProps> = ({ navigation }): ReactElement => {
     if (username && password) navigation.navigate(Screens.SHOP);
   };
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.container}
+      style={{ backgroundColor: Colors.PRIMARY }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled={false}
+    >
       <ImageBackground
         source={require("../assets/images/login-bg.png")}
         style={styles.headerContainer}
@@ -93,7 +99,7 @@ export const Login: FC<LoginProps> = ({ navigation }): ReactElement => {
         </View>
         <Button title="Login" style={{ marginTop: "15%" }} onPress={login} />
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
