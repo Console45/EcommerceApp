@@ -109,8 +109,8 @@ const Label: FC<LabelProps> = ({ image, title }): ReactElement => {
       <Image
         source={image}
         style={{
-          width: getScreenPercent(5.8),
-          height: getScreenPercent(5.8),
+          width: getScreenPercent(5.0),
+          height: getScreenPercent(5.0),
           marginRight: 10,
         }}
         resizeMode={"contain"}
