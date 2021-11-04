@@ -1,11 +1,12 @@
 import React, { FC, ReactElement } from "react";
-import { Image, ImageSourcePropType } from "react-native";
+import { Image, ImageSourcePropType, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Screens, TabNavigatorParamList } from "./screens";
 import { Cart, Home, Favourites, History } from "../screens";
 import { Colors } from "../theme";
 import { getScreenPercent } from "../utils";
+import { useNavigation } from "@react-navigation/core";
 
 interface TabNavigatorProps {}
 const Tab = createBottomTabNavigator<TabNavigatorParamList>();
@@ -14,7 +15,14 @@ export const TabNavigator: FC<TabNavigatorProps> = ({}): ReactElement => {
   return (
     <Tab.Navigator
       initialRouteName={Screens.HOME}
-      screenOptions={{ tabBarShowLabel: false }}
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerStyle: {
+          backgroundColor: Colors.PRIMARY_BG,
+          shadowRadius: 0,
+          shadowOffset: { height: 0, width: 0 },
+        },
+      }}
     >
       <Tab.Screen
         name={Screens.HOME}
@@ -42,6 +50,14 @@ export const TabNavigator: FC<TabNavigatorProps> = ({}): ReactElement => {
         component={Favourites}
         options={{
           tabBarStyle: { display: "none" },
+          headerStyle: {
+            backgroundColor: Colors.PRIMARY_BG,
+            shadowRadius: 0,
+            shadowOffset: { height: 0, width: 0 },
+          },
+          headerLeft: ({}) => {
+            return <BackButton />;
+          },
           tabBarIcon: ({ focused }) => {
             return (
               <TabIcon
@@ -58,6 +74,14 @@ export const TabNavigator: FC<TabNavigatorProps> = ({}): ReactElement => {
         component={Cart}
         options={{
           tabBarStyle: { display: "none" },
+          headerStyle: {
+            backgroundColor: Colors.PRIMARY_BG,
+            shadowRadius: 0,
+            shadowOffset: { height: 0, width: 0 },
+          },
+          headerLeft: ({}) => {
+            return <BackButton />;
+          },
           tabBarIcon: ({ focused }) => {
             return (
               <TabIcon
@@ -74,6 +98,14 @@ export const TabNavigator: FC<TabNavigatorProps> = ({}): ReactElement => {
         component={History}
         options={{
           tabBarStyle: { display: "none" },
+          headerStyle: {
+            backgroundColor: Colors.PRIMARY_BG,
+            shadowRadius: 0,
+            shadowOffset: { height: 0, width: 0 },
+          },
+          headerLeft: ({}) => {
+            return <BackButton />;
+          },
           tabBarIcon: ({ focused }) => {
             return (
               <TabIcon
@@ -107,9 +139,29 @@ const TabIcon: FC<TabIconProps> = ({
   );
 };
 
+const BackButton: FC<{}> = ({}): ReactElement => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={{ marginLeft: "12%" }}
+      onPress={() => navigation.goBack()}
+    >
+      <Image
+        style={styles.backButton}
+        source={require("../assets/images/Arrow.png")}
+      />
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   tabIcon: {
     width: getScreenPercent(5.4),
     height: getScreenPercent(5.4),
+  },
+  backButton: {
+    width: getScreenPercent(5.8),
+    height: getScreenPercent(5.8),
   },
 });
