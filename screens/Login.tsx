@@ -65,6 +65,7 @@ export const Login: FC<LoginProps> = ({ navigation }): ReactElement => {
             <View style={styles.input}>
               <TextInput
                 style={{ flex: 1, borderWidth: 0 }}
+                autoFocus={true}
                 value={username}
                 onChangeText={(text: string) => setUsername(text)}
               />
