@@ -1,4 +1,14 @@
-export const Product = [
+export interface Product {
+  id: number;
+  title: string;
+  descriptionTitle: string;
+  description: string;
+  image: NodeRequire;
+  category: string;
+  price: string;
+}
+
+export const Product: Product[] = [
   {
     id: Math.floor(Math.random() * 100),
     title: "Apple Ipad Air",
