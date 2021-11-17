@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SearchModal } from "../layouts";
+import { SearchModal, TabBar } from "../layouts";
 import { Colors, FontType, Sizes } from "../theme";
 import { getScreenPercent } from "../utils";
 
@@ -36,6 +36,7 @@ export const Home: FC<HomeProps> = (): ReactElement => {
         </View>
       </TouchableOpacity>
       <Text style={styles.header}>Order online collect in store</Text>
+      <TabBar />
     </SafeAreaView>
   );
 };
