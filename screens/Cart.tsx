@@ -4,28 +4,38 @@ import { Button } from "../components";
 import { Colors, FontType } from "../theme";
 import { getScreenPercent } from "../utils";
 import { useNavigation } from "@react-navigation/core";
+import { useStore } from "../hooks";
 
 interface CartProps {}
 
 export const Cart: FC<CartProps> = ({}): ReactElement => {
+  const cart = useStore((state) => state.cart);
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Image
-        resizeMode="contain"
-        style={styles.image}
-        source={require("../assets/images/nohistory.png")}
-      />
-      <Text style={styles.headText}>Your Cart is Empty</Text>
-      <Text style={styles.text}>
-        Hit the blue button down below to Create an order
-      </Text>
-      <Button
-        title="Start ordering"
-        style={styles.button}
-        textStyle={{ fontSize: getScreenPercent(4.2) }}
-        onPress={() => navigation.goBack()}
-      />
+      {cart.length === 0 ? (
+        <View
+          style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
+        >
+          <Image
+            resizeMode="contain"
+            style={styles.image}
+            source={require("../assets/images/nohistory.png")}
+          />
+          <Text style={styles.headText}>Your Cart is Empty</Text>
+          <Text style={styles.text}>
+            Hit the blue button down below to Create an order
+          </Text>
+          <Button
+            title="Start ordering"
+            style={styles.button}
+            textStyle={{ fontSize: getScreenPercent(4.2) }}
+            onPress={() => navigation.goBack()}
+          />
+        </View>
+      ) : (
+        <View></View>
+      )}
     </View>
   );
 };
@@ -34,8 +44,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.PRIMARY_BG,
-    justifyContent: "center",
-    alignItems: "center",
   },
   image: {
     height: getScreenPercent(70),
