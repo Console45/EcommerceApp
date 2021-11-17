@@ -5,18 +5,24 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
+  FlatList,
+  Image,
 } from "react-native";
-import { Colors, FontType, Sizes } from "../theme";
+import { Product } from "../constants";
+import { Colors, FontType } from "../theme";
 import { getScreenPercent } from "../utils";
 
 interface TabBarProps {}
 
 export const TabBar: FC<TabBarProps> = ({}): ReactElement => {
   const [tabFilter, setTabFilter] = useState("wearable");
-  const categories: string[] = ["Wearable", "Laptops", "Phones", "Drones"];
+  const categories: string[] = ["Wearables", "Laptops", "Phones", "Tablets"];
   const changeTab = (tabName: string) => {
     setTabFilter(tabName);
   };
+
+  const products = Product.filter((product) => product.category === tabFilter);
+
   return (
     <View style={styles.tabView}>
       <ScrollView
@@ -36,6 +42,53 @@ export const TabBar: FC<TabBarProps> = ({}): ReactElement => {
           );
         })}
       </ScrollView>
+      <FlatList
+        data={products}
+        horizontal
+        keyExtractor={(item) => item.id.toString()}
+        ItemSeparatorComponent={() => (
+          <View style={{ width: getScreenPercent(10) }} />
+        )}
+        contentContainerStyle={{
+          height: getScreenPercent(100),
+        }}
+        style={{ width: "100%" }}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity style={styles.productContainer}>
+              <Image
+                source={item.image}
+                resizeMode={"contain"}
+                style={{
+                  width: getScreenPercent(40),
+                  marginTop: -getScreenPercent(30),
+                  height: getScreenPercent(40),
+                }}
+              />
+              <Text
+                style={{
+                  fontFamily: FontType.RALEWAY_SEMIBOLD,
+                  fontSize: getScreenPercent(5),
+                  textAlign: "center",
+                  lineHeight: getScreenPercent(7),
+                }}
+              >
+                {item.title}
+              </Text>
+              <Text
+                style={{
+                  color: Colors.PRIMARY,
+                  fontFamily: FontType.RALEWAY_BOLD,
+                  fontSize: getScreenPercent(4.5),
+                }}
+              >
+                $ {item.price}
+              </Text>
+            </TouchableOpacity>
+          );
+        }}
+      />
     </View>
   );
 };
@@ -88,5 +141,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 7,
     marginRight: 5,
+  },
+  productContainer: {
+    width: getScreenPercent(50),
+    marginTop: getScreenPercent(30),
+    height: "60%",
+    backgroundColor: Colors.WHITE,
+    borderRadius: 20,
+    alignItems: "center",
+    marginLeft: 10,
+    justifyContent: "space-evenly",
   },
 });

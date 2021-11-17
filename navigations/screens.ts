@@ -1,4 +1,3 @@
-import { History } from "./../screens/History";
 export enum Screens {
   HOME = "Home",
   ONBOARDING = "Onboarding",
@@ -13,6 +12,7 @@ export type NativeStackParamList = {
   Onboarding: undefined;
   Login: undefined;
   Shop: undefined;
+  ProductDetail: "";
 };
 
 export type TabNavigatorParamList = {
